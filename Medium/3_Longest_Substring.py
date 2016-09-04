@@ -29,5 +29,25 @@ print a.lengthOfLongestSubstring("aaabcabcdd")
 """
 脑子里的思路是，想用时间复杂度为O(n)来解决问题+空间换时间的思路
 然后琢磨着需要保存什么样的数据，用什么样的数据结构
-话说在执行速度上击败了100%的其他python代码
 """
+
+"""
+以下是讨论区的代码,大体思路一样,保存的数据不一样
+"""
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        max = 0  #返回值
+        tmpstr = "" #当前最长的子串(并不是全局最长，且没有重复字符)
+        for ch in s:
+            if not ch in tmpstr:
+                tmpstr = tmpstr + ch
+                if len(tmpstr) > max:
+                    max = len(tmpstr)
+            else:
+                tmpstr = tmpstr[tmpstr.find(ch)+1:] + ch
+            print "tmpstr: {0}".format(tmpstr)
+        return max
